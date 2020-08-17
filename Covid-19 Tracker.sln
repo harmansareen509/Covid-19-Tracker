@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1169
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Covid-19 Tracker", "Covid-19 Tracker\Covid-19 Tracker.rptproj", "{E3B95882-28D4-4753-B723-8CF72303C5EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.Debug|Default.ActiveCfg = Debug
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.Debug|Default.Build.0 = Debug
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.Debug|Default.Deploy.0 = Debug
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.DebugLocal|Default.Build.0 = DebugLocal
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.Release|Default.ActiveCfg = Release
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.Release|Default.Build.0 = Release
+		{E3B95882-28D4-4753-B723-8CF72303C5EA}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E078E9C8-4F67-4A24-A1DE-92626448D260}
+	EndGlobalSection
+EndGlobal
