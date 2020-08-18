@@ -18,13 +18,13 @@
         </DataSetParameter>
         <DataSetParameter Name="@StartDate">
           <ReadOnly>false</ReadOnly>
-          <Nullable>false</Nullable>
+          <Nullable>true</Nullable>
           <OmitFromQuery>false</OmitFromQuery>
           <rd:DbType>Date</rd:DbType>
         </DataSetParameter>
         <DataSetParameter Name="@FinishDate">
           <ReadOnly>false</ReadOnly>
-          <Nullable>false</Nullable>
+          <Nullable>true</Nullable>
           <OmitFromQuery>false</OmitFromQuery>
           <rd:DbType>Date</rd:DbType>
         </DataSetParameter>
@@ -37,28 +37,36 @@
         <DataField>Date</DataField>
         <rd:TypeName>System.DateTime</rd:TypeName>
       </Field>
-      <Field Name="RetailAndRecreationPercentChangeFromBaseline">
-        <DataField>RetailAndRecreationPercentChangeFromBaseline</DataField>
+      <Field Name="Country">
+        <DataField>Country</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Region">
+        <DataField>Region</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="RetailAndRecreation">
+        <DataField>RetailAndRecreation</DataField>
         <rd:TypeName>System.Double</rd:TypeName>
       </Field>
-      <Field Name="GroceryAndPharmacyPercentChangeFromBaseline">
-        <DataField>GroceryAndPharmacyPercentChangeFromBaseline</DataField>
+      <Field Name="GroceryAndPharmacy">
+        <DataField>GroceryAndPharmacy</DataField>
         <rd:TypeName>System.Double</rd:TypeName>
       </Field>
-      <Field Name="ParksPercentChangeFromBaseline">
-        <DataField>ParksPercentChangeFromBaseline</DataField>
+      <Field Name="Parks">
+        <DataField>Parks</DataField>
         <rd:TypeName>System.Double</rd:TypeName>
       </Field>
-      <Field Name="TransitStationsPercentChangeFromBaseline">
-        <DataField>TransitStationsPercentChangeFromBaseline</DataField>
+      <Field Name="TransitStations">
+        <DataField>TransitStations</DataField>
         <rd:TypeName>System.Double</rd:TypeName>
       </Field>
-      <Field Name="WorkPlacesPercentChangeFromBaseline">
-        <DataField>WorkPlacesPercentChangeFromBaseline</DataField>
+      <Field Name="WorkPlaces">
+        <DataField>WorkPlaces</DataField>
         <rd:TypeName>System.Double</rd:TypeName>
       </Field>
-      <Field Name="ResidentialPercentChangeFromBaseline">
-        <DataField>ResidentialPercentChangeFromBaseline</DataField>
+      <Field Name="Residential">
+        <DataField>Residential</DataField>
         <rd:TypeName>System.Double</rd:TypeName>
       </Field>
     </Fields>

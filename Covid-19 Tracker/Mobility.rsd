@@ -29,6 +29,14 @@
         <DataField>MonthName</DataField>
         <rd:TypeName>System.String</rd:TypeName>
       </Field>
+      <Field Name="Country">
+        <DataField>Country</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Region">
+        <DataField>Region</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
       <Field Name="RetailAndRecreation">
         <DataField>RetailAndRecreation</DataField>
         <rd:TypeName>System.Double</rd:TypeName>

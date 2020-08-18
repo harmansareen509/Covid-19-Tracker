@@ -10,6 +10,93 @@
     </DataSource>
   </DataSources>
   <DataSets>
+    <DataSet Name="Mobility">
+      <SharedDataSet>
+        <SharedDataSetReference>Mobility</SharedDataSetReference>
+        <QueryParameters>
+          <QueryParameter Name="@Country">
+            <Value>=Parameters!Country.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Region">
+            <Value>=Parameters!Region.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="Month">
+          <DataField>Month</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MonthName">
+          <DataField>MonthName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Region">
+          <DataField>Region</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RetailAndRecreation">
+          <DataField>RetailAndRecreation</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="GroceryAndPharmacy">
+          <DataField>GroceryAndPharmacy</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Parks">
+          <DataField>Parks</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="TransitStations">
+          <DataField>TransitStations</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="WorkPlaces">
+          <DataField>WorkPlaces</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Residential">
+          <DataField>Residential</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Country_q">
+      <Query>
+        <DataSourceName>CovidTracker</DataSourceName>
+        <CommandText>SELECT DISTINCT Country
+FROM            CovidMobility
+ORDER BY Country</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Region_q">
+      <Query>
+        <DataSourceName>CovidTracker</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Country">
+            <Value>=Parameters!Country.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>spRegion</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Region">
+          <DataField>Region</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
     <DataSet Name="DateMobility">
       <SharedDataSet>
         <SharedDataSetReference>DateMobility</SharedDataSetReference>
@@ -33,51 +120,12 @@
           <DataField>Date</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="RetailAndRecreationPercentChangeFromBaseline">
-          <DataField>RetailAndRecreationPercentChangeFromBaseline</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="GroceryAndPharmacyPercentChangeFromBaseline">
-          <DataField>GroceryAndPharmacyPercentChangeFromBaseline</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="ParksPercentChangeFromBaseline">
-          <DataField>ParksPercentChangeFromBaseline</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="TransitStationsPercentChangeFromBaseline">
-          <DataField>TransitStationsPercentChangeFromBaseline</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="WorkPlacesPercentChangeFromBaseline">
-          <DataField>WorkPlacesPercentChangeFromBaseline</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="ResidentialPercentChangeFromBaseline">
-          <DataField>ResidentialPercentChangeFromBaseline</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="Mobility">
-      <SharedDataSet>
-        <SharedDataSetReference>Mobility</SharedDataSetReference>
-        <QueryParameters>
-          <QueryParameter Name="@Country">
-            <Value>=Parameters!Country.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@Region">
-            <Value>=Parameters!Region.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-      </SharedDataSet>
-      <Fields>
-        <Field Name="Month">
-          <DataField>Month</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="MonthName">
-          <DataField>MonthName</DataField>
+        <Field Name="Region">
+          <DataField>Region</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="RetailAndRecreation">
@@ -111,11 +159,11 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Chart Name="Chart6">
+          <Chart Name="Chart2">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="Chart6_CategoryGroup">
+                  <Group Name="Chart2_CategoryGroup">
                     <GroupExpressions>
                       <GroupExpression>=Fields!Month.Value</GroupExpression>
                     </GroupExpressions>
@@ -410,7 +458,7 @@
                       </Style>
                     </ChartAxisTitle>
                     <ChartMajorGridLines>
-                      <Enabled>False</Enabled>
+                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -418,6 +466,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
+                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -444,7 +493,6 @@
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
-                    <Angle>-45</Angle>
                     <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
                       <Style />
@@ -630,8 +678,7 @@
               <ChartLegend Name="Default">
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontFamily>Arial</FontFamily>
-                  <FontWeight>Bold</FontWeight>
+                  <FontSize>8pt</FontSize>
                 </Style>
                 <Position>TopLeft</Position>
                 <ChartLegendTitle>
@@ -642,18 +689,16 @@
                     <TextAlign>Center</TextAlign>
                   </Style>
                 </ChartLegendTitle>
-                <AutoFitTextDisabled>true</AutoFitTextDisabled>
                 <HeaderSeparatorColor>Black</HeaderSeparatorColor>
                 <ColumnSeparatorColor>Black</ColumnSeparatorColor>
               </ChartLegend>
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Impact of Covid-19 on Mobility at Various Sectors</Caption>
+                <Caption>Average Monthly Impact of Covid-19 on Mobility at Various Sectors</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontFamily>Arial</FontFamily>
-                  <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextAlign>Left</TextAlign>
                   <VerticalAlign>Top</VerticalAlign>
@@ -661,7 +706,7 @@
                 <Position>TopLeft</Position>
               </ChartTitle>
             </ChartTitles>
-            <Palette>PacificSemiTransparent</Palette>
+            <Palette>Pacific</Palette>
             <ChartBorderSkin>
               <Style>
                 <BackgroundColor>Gray</BackgroundColor>
@@ -679,9 +724,10 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>Mobility</DataSetName>
-            <Left>0.47307cm</Left>
-            <Height>12.72646cm</Height>
-            <Width>21.41708cm</Width>
+            <Top>2.72203cm</Top>
+            <Left>0.3937cm</Left>
+            <Height>9.94771cm</Height>
+            <Width>20.78208cm</Width>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -691,11 +737,11 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Chart Name="Chart7">
+          <Chart Name="Chart1">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="Chart7_CategoryGroup">
+                  <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
                       <GroupExpression>=Fields!Date.Value</GroupExpression>
                     </GroupExpressions>
@@ -712,37 +758,41 @@
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Retail And Recreation Percent Change From Baseline</Label>
+                  <Label>Retail And Recreation</Label>
                 </ChartMember>
                 <ChartMember>
-                  <Label>Grocery And Pharmacy Percent Change From Baseline</Label>
+                  <Label>Grocery And Pharmacy</Label>
                 </ChartMember>
                 <ChartMember>
-                  <Label>Parks Percent Change From Baseline</Label>
+                  <Label>Parks</Label>
                 </ChartMember>
                 <ChartMember>
-                  <Label>Transit Stations Percent Change From Baseline</Label>
+                  <Label>Transit Stations</Label>
                 </ChartMember>
                 <ChartMember>
-                  <Label>Work Places Percent Change From Baseline</Label>
+                  <Label>Work Places</Label>
                 </ChartMember>
                 <ChartMember>
-                  <Label>Residential Percent Change From Baseline</Label>
+                  <Label>Residential</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="RetailAndRecreationPercentChangeFromBaseline">
+                <ChartSeries Name="RetailAndRecreation">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!RetailAndRecreationPercentChangeFromBaseline.Value)</Y>
+                        <Y>=Sum(Fields!RetailAndRecreation.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <Style />
+                      <Style>
+                        <Border>
+                          <Width>2pt</Width>
+                        </Border>
+                      </Style>
                       <ChartMarker>
                         <Type>Auto</Type>
                         <Style />
@@ -768,16 +818,20 @@
                     <MinMovingDistance>0pt</MinMovingDistance>
                   </ChartSmartLabel>
                 </ChartSeries>
-                <ChartSeries Name="GroceryAndPharmacyPercentChangeFromBaseline">
+                <ChartSeries Name="GroceryAndPharmacy">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!GroceryAndPharmacyPercentChangeFromBaseline.Value)</Y>
+                        <Y>=Sum(Fields!GroceryAndPharmacy.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <Style />
+                      <Style>
+                        <Border>
+                          <Width>2pt</Width>
+                        </Border>
+                      </Style>
                       <ChartMarker>
                         <Type>Auto</Type>
                         <Style />
@@ -803,16 +857,20 @@
                     <MinMovingDistance>0pt</MinMovingDistance>
                   </ChartSmartLabel>
                 </ChartSeries>
-                <ChartSeries Name="ParksPercentChangeFromBaseline">
+                <ChartSeries Name="Parks">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!ParksPercentChangeFromBaseline.Value)</Y>
+                        <Y>=Sum(Fields!Parks.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <Style />
+                      <Style>
+                        <Border>
+                          <Width>2pt</Width>
+                        </Border>
+                      </Style>
                       <ChartMarker>
                         <Type>Auto</Type>
                         <Style />
@@ -838,16 +896,20 @@
                     <MinMovingDistance>0pt</MinMovingDistance>
                   </ChartSmartLabel>
                 </ChartSeries>
-                <ChartSeries Name="TransitStationsPercentChangeFromBaseline">
+                <ChartSeries Name="TransitStations">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!TransitStationsPercentChangeFromBaseline.Value)</Y>
+                        <Y>=Sum(Fields!TransitStations.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <Style />
+                      <Style>
+                        <Border>
+                          <Width>2pt</Width>
+                        </Border>
+                      </Style>
                       <ChartMarker>
                         <Type>Auto</Type>
                         <Style />
@@ -873,16 +935,20 @@
                     <MinMovingDistance>0pt</MinMovingDistance>
                   </ChartSmartLabel>
                 </ChartSeries>
-                <ChartSeries Name="WorkPlacesPercentChangeFromBaseline">
+                <ChartSeries Name="WorkPlaces">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!WorkPlacesPercentChangeFromBaseline.Value)</Y>
+                        <Y>=Sum(Fields!WorkPlaces.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <Style />
+                      <Style>
+                        <Border>
+                          <Width>2pt</Width>
+                        </Border>
+                      </Style>
                       <ChartMarker>
                         <Type>Auto</Type>
                         <Style />
@@ -908,16 +974,20 @@
                     <MinMovingDistance>0pt</MinMovingDistance>
                   </ChartSmartLabel>
                 </ChartSeries>
-                <ChartSeries Name="ResidentialPercentChangeFromBaseline">
+                <ChartSeries Name="Residential">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!ResidentialPercentChangeFromBaseline.Value)</Y>
+                        <Y>=Sum(Fields!Residential.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <Style />
+                      <Style>
+                        <Border>
+                          <Width>2pt</Width>
+                        </Border>
+                      </Style>
                       <ChartMarker>
                         <Type>Auto</Type>
                         <Style />
@@ -954,8 +1024,10 @@
                         <Color>Gainsboro</Color>
                         <Style>None</Style>
                       </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
+                      <FontFamily>Arial</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Format>d/MM/yyyy</Format>
                     </Style>
                     <ChartAxisTitle>
                       <Caption />
@@ -965,7 +1037,7 @@
                       </Style>
                     </ChartAxisTitle>
                     <ChartMajorGridLines>
-                      <Enabled>False</Enabled>
+                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -973,6 +1045,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
+                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -1067,14 +1140,15 @@
                         <Color>Gainsboro</Color>
                         <Style>None</Style>
                       </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
+                      <FontFamily>Arial</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption />
+                      <Caption>Percentage Change From Baseline</Caption>
                       <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
+                        <FontFamily>Arial</FontFamily>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </ChartAxisTitle>
                     <ChartMajorGridLines>
@@ -1111,6 +1185,7 @@
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
                       <Style />
                     </ChartAxisScaleBreak>
@@ -1198,14 +1273,13 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Chart Title</Caption>
+                <Caption>Daywise Impact of Covid-19 on Mobility at Various Sectors</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontSize>9pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontFamily>Arial</FontFamily>
+                  <FontWeight>Bold</FontWeight>
                   <TextAlign>Left</TextAlign>
                   <VerticalAlign>Top</VerticalAlign>
-                  <Color>#a6a6a6</Color>
                 </Style>
                 <Position>TopLeft</Position>
               </ChartTitle>
@@ -1228,9 +1302,10 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DateMobility</DataSetName>
-            <Left>22.80391cm</Left>
-            <Height>12.72646cm</Height>
-            <Width>19.82958cm</Width>
+            <Top>2.72203cm</Top>
+            <Left>22.06308cm</Left>
+            <Height>9.94771cm</Height>
+            <Width>19.37979cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1245,7 +1320,7 @@
         <Height>7.64583in</Height>
         <Style />
       </Body>
-      <Width>16.93067in</Width>
+      <Width>16.58692in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -1262,17 +1337,33 @@
     <ReportParameter Name="Country">
       <DataType>String</DataType>
       <Prompt>Country</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Country_q</DataSetName>
+          <ValueField>Country</ValueField>
+          <LabelField>Country</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="Region">
       <DataType>String</DataType>
       <Prompt>Region</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Region_q</DataSetName>
+          <ValueField>Region</ValueField>
+          <LabelField>Region</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="StartDate">
       <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
       <Prompt>Start Date</Prompt>
     </ReportParameter>
     <ReportParameter Name="FinishDate">
       <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
       <Prompt>Finish Date</Prompt>
     </ReportParameter>
   </ReportParameters>
